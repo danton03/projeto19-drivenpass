@@ -3,13 +3,25 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-model Users{
-  id Int @id @default(autoincrement())
-  email String @unique
-  password String 
+model Users {
+  id          Int           @id @default(autoincrement())
+  email       String        @unique
+  password    String
+  Credentials Credentials[]
+}
+
+model Credentials {
+  id       Int    @id @default(autoincrement())
+  title    String
+  url      String
+  username String
+  password String
+  userId   Int
+  users    Users  @relation(fields: [userId], references: [id])
+  @@unique([title, userId])
 }

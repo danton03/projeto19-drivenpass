@@ -2,12 +2,11 @@ import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import { getUserByEmail, storeUser } from '../repositories/userRepository';
 import bcrypt from "bcrypt";
-import { IUserDataWithoutId } from '../types/authTypes';
-import { errorHandlerMiddleware } from '../middlewares/errorMiddleware';
+import { TUserDataWithoutId } from '../types/authTypes';
 
 dotenv.config();
 
-export async function loginService(authData: IUserDataWithoutId) {
+export async function loginService(authData: TUserDataWithoutId) {
   // 1 - Verificar se o usuario existe no banco de dados
   const user = await getUserByEmail(authData.email);
   if(!user){
@@ -43,7 +42,7 @@ export async function loginService(authData: IUserDataWithoutId) {
   return token;
 }
 
-export async function createUserService(authData: IUserDataWithoutId) {
+export async function createUserService(authData: TUserDataWithoutId) {
   // 1 - Verificar se o usuario jś existe no banco de dados
   const user = await getUserByEmail(authData.email);
   if(user){
