@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 
 export function validateSchemaMiddleware(schema: ObjectSchema) {
   return (req: Request, res: Response, next: NextFunction) => {
-    const validation = schema.validate(req.body);
+    const validation = schema.validate(req.body, {abortEarly: false});
     if (validation.error) {
       return res.status(422).send({ error: validation.error.message });
     }
