@@ -75,7 +75,7 @@ POST /login
 Response:
 ```json
 {
-	"token": "iIsInR5cCI6Ik.jE2NjMwMDg2NTF9.36UsZxcxCFpecWo"
+  "token": "iIsInR5cCI6Ik.jE2NjMwMDg2NTF9.36UsZxcxCFpecWo"
 }
 ```
 `Note: The token expires in 1 day.`
@@ -287,6 +287,8 @@ POST /cards
 | `expirationDate`       | `string` | **Required**. card expiration date       |
 | `isVirtual`       | `boolean` | **Required**. specifies if it is virtual card     |
 | `type`       | `boolean` | **Required**. card type     |
+
+`number must be 16 characters long`
 
 `expirationDate must be in MM/YY format.`
 
