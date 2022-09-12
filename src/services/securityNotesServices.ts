@@ -3,7 +3,7 @@ import { findAllSecurityNotes, findNoteById, storeSecurityNote, findByTitleAndUs
 
 export async function createSecurityNoteService(title: string, text: string, token: string){
   const userId = Number(validateToken(token));
-  const findOne=await findByTitleAndUserId(title,userId);
+  const findOne = await findByTitleAndUserId(title,userId);
  
   if (findOne.length !== 0) {
     throw {
