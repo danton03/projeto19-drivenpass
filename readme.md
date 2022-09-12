@@ -164,7 +164,7 @@ Response sending query param:
 ### Delete credential
 
 ```http
-Delete /credentials/:id
+DELETE /credentials/:id
 ```
 
 #### Request:
