@@ -1,6 +1,6 @@
 import { validateToken } from "../utils/verifyToken";
 import { findAllCards, findCardById, storeCard, findByTitleAndUserId, deleteCardById } from "../repositories/cardsRepository";
-import { TCard, TCardFull } from "../types/cardTypes";
+import { TCard } from "../types/cardTypes";
 import Cryptr from "cryptr";
 
 const ENCRYPT_KEY: string = String(process.env.CRYPTR_SECRET_KEY);
@@ -37,7 +37,7 @@ export async function getCardsService(cardId: any, token: string){
   //Valida o token
   const userId = Number(validateToken(token));
 
-  //Verifica se o usuário deseja uma nota específica e repassa a query necessária
+  //Verifica se o usuário deseja um cartão específico e repassa a query necessária
   if(cardId){
     const id = Number(cardId)
     //verifica se o id repassado é mesmo um número
@@ -69,17 +69,18 @@ export async function getCardsService(cardId: any, token: string){
       password: cryptr.decrypt(card.password),
       cvc: cryptr.decrypt(card.cvc)
     }
-    delete card.userId;
+    delete cardDecrypted.userId;
     return cardDecrypted;
   }
 
   const cards = await findAllCards(userId);
-  const cardDecrypted = cards.forEach(card => {
+  const cardsDecrypted = cards.map(card => {
     delete card.userId;
     card.password = cryptr.decrypt(card.password),
     card.cvc = cryptr.decrypt(card.cvc)
+    return card;
   }); 
-  return cardDecrypted;
+  return cardsDecrypted;
 }
 
 export async function deleteCardService(cardId: number, token: string){
