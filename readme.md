@@ -32,9 +32,9 @@ DrivenPass simulates an API that manages credentials, cards data, notes and Wi-F
 ## Features
 
 -   Store, show or delete credentials of websites
+-   Create, show or delete security notes
 -   Store, show or delete cards data
 -   Store, show or delete Wi-Fi credentials 
--   Create, show or delete security notes
 
 </br>
 
@@ -250,7 +250,7 @@ Response sending query param:
 ### Delete security note
 
 ```http
-Delete /securitynotess/:id
+DELETE /securitynotess/:id
 ```
 
 #### Request:
@@ -354,7 +354,7 @@ Response sending query param:
 ### Delete card
 
 ```http
-Delete /cards/:id
+DELETE /cards/:id
 ```
 
 #### Request:
@@ -451,7 +451,7 @@ Response sending query param:
 ### Delete Wi-Fi
 
 ```http
-Delete /wifis/:id
+DELETE /wifis/:id
 ```
 
 #### Request:
